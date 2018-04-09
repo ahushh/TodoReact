@@ -1,0 +1,133 @@
+.App {
+    text-align: center;
+}
+
+.App-logo {
+    animation: App-logo-spin infinite 20s linear;
+    height: 80px;
+}
+
+.App-header {
+    background-color: #222;
+    height: 150px;
+    padding: 20px;
+    color: white;
+}
+
+.App-title {
+    font-size: 1.5em;
+}
+
+.App-intro {
+    font-size: large;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.todo {
+    display: flex;
+    font-size: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, .1);
+    background-color: #fff;
+    transition: all .2s;
+    -webkit-user-select: none;
+    user-select: none;
+    padding: 1em;
+    align-items: center;
+}
+
+.todo.completed * {
+    color: lightgray;
+}
+
+.todo.completed .todo-title {
+    text-decoration: line-through;
+}
+
+.todo .todo-title {
+    margin-right: auto;
+}
+
+.todo .checkbox {
+    margin-right: .5rem;
+}
+
+.todo button:not(.checkbox) {
+    opacity: 0;
+    transition: all .2s;
+}
+
+.todo:hover button:not(.checkbox) {
+    opacity: 1;
+}
+
+.todo-edit-form {
+    display: flex;
+    font-size: 1rem;
+    padding: .85em;
+    border-top: 1px solid rgba(0, 0, 0, .1);
+}
+
+.todo-edit-form input {
+    flex: 1;
+}
+
+.todo-edit-form .save {
+    margin-left: .5em;
+}
+
+/* Todo form */
+
+.todo-form {
+    display: flex;
+    background-color: #FAFAFA;
+    border-top: 1px solid rgba(0, 0, 0, .1);
+    padding: 10px;
+}
+
+.todo-form input {
+    flex: 1;
+    outline: none;
+    transition: all .2s;
+}
+
+.todo-form input:focus {
+    border: 1px solid #00d8ff;
+}
+
+.todo-form button {
+    margin-left: 10px;
+}
+
+/* Animation   */
+.slide-enter {
+    transform: translateX(100%);
+}
+
+.slide-enter.slide-enter-active {
+    transform: translateX(0);
+    transition: all 0.5s;
+}
+
+.slide-leave {
+    transform: translateX(0);
+}
+
+.slide-leave.slide-leave-active {
+    transform: translateX(100%);
+    transition: all .5s;
+
+}
+
+/* Not Found */
+#not-found {
+    text-align: center;
+    margin-top: 3em;
+}
