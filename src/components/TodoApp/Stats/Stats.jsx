@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Stats(props) {
-    let total = props.todos.length;
-    let completed = props.todos.filter(todo => todo.completed).length;
+const Stats = (props) => {
+    let total = props.tasks.length;
+    let completed = props.tasks.filter(todo => todo.completed).length;
     let notCompleted = total - completed;
 
     return (
@@ -24,10 +24,10 @@ function Stats(props) {
             </tbody>
         </table>
     )
-}
+};
 
 Stats.propTypes = {
-    todos: PropTypes.array.isRequired
+    tasks: PropTypes.array.isRequired
 };
 
 export default Stats;

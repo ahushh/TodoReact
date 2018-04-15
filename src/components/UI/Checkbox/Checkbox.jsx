@@ -6,7 +6,7 @@ function Checkbox(props) {
     return (
         <FormGroup check onClick={props.onChange} inline>
             <Label check>
-                <Input type="checkbox"/>
+                <Input type="checkbox"/>{' '}
             </Label>
         </FormGroup>
     );

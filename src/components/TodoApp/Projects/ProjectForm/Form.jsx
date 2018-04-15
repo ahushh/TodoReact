@@ -1,36 +1,31 @@
 import React from 'react';
 import PropTypes from "prop-types";
 
-import Button from '../button/Button';
+import Button from '../../../UI/Button/Button';
 
-class Form extends React.Component {
+class ProjectForm extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
             title: '',
-
         };
-
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-
     }
 
-    handleChange(e) {
+    handleChange = (e) => {
         let title = e.target.value;
 
         this.setState({title});
-    }
+    };
 
-    handleSubmit(e) {
+    handleSubmit = (e) => {
         e.preventDefault();
         let title = this.state.title;
         if (title) {
             this.props.onAdd(title);
             this.setState({title: ''});
         }
-    }
+    };
 
     render() {
         return (
@@ -38,16 +33,16 @@ class Form extends React.Component {
                 <input type="text"
                        value={this.state.title}
                        onChange={this.handleChange}
-                       placeholder="Что нужно сделать?"/>
-                <Button type="submit">Добавить</Button>
+                       placeholder="Создать проект"/>
+                <Button type="submit">Создать</Button>
             </form>
         );
     }
 }
 
 
-Form.propTypes = {
+ProjectForm.propTypes = {
     onAdd: PropTypes.func.isRequired
 };
 
-export default Form;
+export default ProjectForm;
