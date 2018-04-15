@@ -4,7 +4,7 @@ import Stats from "./Stats";
 
 function mapStateToProps(state) {
     return {
-        tasks: state.tasks
+        projects: state.projects
     };
 }
 

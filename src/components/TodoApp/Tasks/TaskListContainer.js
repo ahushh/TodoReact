@@ -4,9 +4,13 @@ import {deleteTodo, toggleTodo, editTodo} from '../../../actions/index';
 import TasksList from "./TasksList/TasksList";
 
 function mapStateToProps(state, props) {
-    const projectID = props.projectId;
+    const projectPath = props.projectName;
+    const index = state.projects.findIndex((project) => project.title === projectPath);
+
+    debugger;
+    const currentTasks = state.projects[index].tasks;
     return {
-        tasks: state.projects[projectID].tasks,
+        tasks: currentTasks
     };
 
 }
@@ -19,6 +23,6 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-const ListContainer = connect(mapStateToProps, mapDispatchToProps)(TasksList);
+const TaskListContainer = connect(mapStateToProps, mapDispatchToProps)(TasksList);
 
-export default ListContainer;
+export default TaskListContainer;

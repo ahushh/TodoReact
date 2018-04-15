@@ -1,6 +1,6 @@
 import {ADD_PROJECT, DELETE_PROJECT, EDIT_PROJECT, TOGGLE_PROJECT} from '../actions';
 
-function projectReducer(state = {}, action) {
+function projectReducer(project = {}, action) {
     switch (action.type) {
         case ADD_PROJECT:
             return {
@@ -10,25 +10,25 @@ function projectReducer(state = {}, action) {
             };
 
         case TOGGLE_PROJECT:
-            if (state.id !== action.id) {
-                return state;
+            if (project.id !== action.id) {
+                return project;
             }
 
-            return Object.assign({}, state, {
-                completed: !state.completed
+            return Object.assign({}, project, {
+                completed: !project.completed
             });
 
         case EDIT_PROJECT:
-            if (state.id !== action.id) {
-                return state;
+            if (project.id !== action.id) {
+                return project;
             }
 
-            return Object.assign({}, state, {
+            return Object.assign({}, project, {
                 title: action.title
             });
 
         default:
-            return state;
+            return project;
     }
 }
 
@@ -38,8 +38,7 @@ function reducer(state = [], action) {
             return [...state, projectReducer(undefined, action)];
 
         case DELETE_PROJECT:
-            debugger;
-            const index = state.findIndex(todo => todo.id === action.id);
+            const index = state.findIndex(project => project.id === action.id);
 
             return [
                 ...state.slice(0, index),
@@ -47,11 +46,10 @@ function reducer(state = [], action) {
             ];
 
         case TOGGLE_PROJECT:
-            console.log(projectReducer, 'state',  state);
-            return state.map(todo => projectReducer(todo, action));
+            return state.map(project => projectReducer(project, action));
 
         case EDIT_PROJECT:
-            return state.map(todo => projectReducer(todo, action));
+            return state.map(project => projectReducer(project, action));
 
         default:
             return state;

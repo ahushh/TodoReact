@@ -1,14 +1,14 @@
 import React from "react";
-import ListContainer from "../ListContainer";
+import TaskListContainer from "../TaskListContainer";
 import TasksFormContainer from "../TasksFormContainer";
 
 
 const TaskView = ({match}) => {
-    const id = parseInt(match.params.id) - 1;
+    const abc = match.params.abc;
     return (
         <div>
             <TasksFormContainer />
-            <ListContainer projectId={id}/>
+            <TaskListContainer projectName={abc}/>
         </div>
     );
 };

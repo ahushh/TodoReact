@@ -4,6 +4,7 @@ import {Form, Label, Input, FormText, ListGroup, ListGroupItem, NavLink, Badge} 
 
 import Checkbox from '../../../UI/Checkbox/Checkbox';
 import MyButton from '../../../UI/Button/Button';
+import {Link} from "react-router-dom";
 
 class Project extends React.Component {
     constructor(props) {
@@ -17,7 +18,6 @@ class Project extends React.Component {
         event.preventDefault();
         // const title = this.refs.title.value;
         const title = event.target[0].value;
-        debugger;
         this.props.onEdit(this.props.id, title);
 
         this.setState({editing: false});
@@ -53,20 +53,26 @@ class Project extends React.Component {
 
     displayTask = () => {
         return (
-            <Badge href={`/todo/project/${this.props.id}`} color="light"
-                className={`todo${this.props.completed ? ' completed' : ''}`}>
-                <Checkbox
-                    checked={this.props.completed}
-                    onChange={this.handleToggle}/>
+            <Link to={`/todo/project/${this.props.title}`}>
+                <ListGroupItem color="light"
+                       className={`todo${this.props.completed ? ' completed' : ''}`}
+                >
 
-                <span className="todo-title">{this.props.title}</span>
-                <MyButton
-                    className="edit" icon="edit"
-                    onClick={this.handleEdit}/>
-                <MyButton
-                    className="delete" icon="delete"
-                    onClick={this.handleDelete}/>
-            </Badge>
+                    <Checkbox
+                        checked={this.props.completed}
+                        onChange={this.handleToggle}/>
+
+                    <span className="todo-title">{this.props.title}</span>
+
+                    <MyButton
+                        className="edit" icon="edit"
+                        onClick={this.handleEdit}/>
+                    <MyButton
+                        className="delete" icon="delete"
+                        onClick={this.handleDelete}/>
+
+                </ListGroupItem>
+            </Link>
         )
     };
 
