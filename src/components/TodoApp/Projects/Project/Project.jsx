@@ -7,6 +7,16 @@ import MyButton from '../../../UI/Button/Button';
 import {Link} from "react-router-dom";
 
 class Project extends React.Component {
+    static propTypes = {
+        title: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
+        completed: PropTypes.bool.isRequired,
+        onToggle: PropTypes.func.isRequired,
+        onDelete: PropTypes.func.isRequired,
+        onEdit: PropTypes.func.isRequired,
+
+    };
+
     constructor(props) {
         super(props);
         this.state = {
@@ -80,17 +90,6 @@ class Project extends React.Component {
         return this.state.editing ? this.displayForm() : this.displayTask();
     }
 
-
 }
-
-Project.propTypes = {
-    title: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-    completed: PropTypes.bool.isRequired,
-    onToggle: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired,
-    onEdit: PropTypes.func.isRequired,
-
-};
 
 export default Project;

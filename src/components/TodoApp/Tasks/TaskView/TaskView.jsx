@@ -5,9 +5,10 @@ import TasksFormContainer from "../TasksFormContainer";
 
 const TaskView = ({match}) => {
     const abc = match.params.abc;
+
     return (
         <div>
-            <TasksFormContainer />
+            <TasksFormContainer projectName={abc} />
             <TaskListContainer projectName={abc}/>
         </div>
     );

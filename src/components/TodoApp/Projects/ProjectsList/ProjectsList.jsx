@@ -5,24 +5,27 @@ import {CSSTransition, TransitionGroup} from 'react-transition-group';
 import Project from "../Project/Project";
 
 const ProjectsList = props => {
-
     return (
         <TransitionGroup component="section" className="todo-list">
-            {props.projects.map(todo =>
-                <CSSTransition key={todo.id}
-                               timeout={500}
-                               classNames="slide">
-                    <Project
-                        key={todo.id}
-                        id={todo.id}
-                        title={todo.title}
-                        completed={todo.completed}
-                        onDelete={props.onDelete}
-                        onToggle={props.onToggle}
-                        onEdit={props.onEdit}
-                    />
-                </CSSTransition>
-            )}
+            {props.projects ?
+                props.projects.map(todo =>
+                    <CSSTransition key={todo.id}
+                                   timeout={500}
+                                   classNames="slide">
+                        <Project
+                            key={todo.id}
+                            id={todo.id}
+                            title={todo.title}
+                            completed={todo.completed}
+                            onDelete={props.onDelete}
+                            onToggle={props.onToggle}
+                            onEdit={props.onEdit}
+                        />
+                    </CSSTransition>
+                )
+                : <div> Нет задач</div>
+            }
+
         </TransitionGroup>
     );
 };

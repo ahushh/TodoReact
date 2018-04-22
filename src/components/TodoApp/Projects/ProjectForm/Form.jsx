@@ -4,6 +4,10 @@ import PropTypes from "prop-types";
 import Button from '../../../UI/Button/Button';
 
 class ProjectForm extends React.Component {
+    static propTypes = {
+        onAdd: PropTypes.func.isRequired
+    };
+
     constructor(props) {
         super(props);
 
@@ -41,8 +45,5 @@ class ProjectForm extends React.Component {
 }
 
 
-ProjectForm.propTypes = {
-    onAdd: PropTypes.func.isRequired
-};
 
 export default ProjectForm;

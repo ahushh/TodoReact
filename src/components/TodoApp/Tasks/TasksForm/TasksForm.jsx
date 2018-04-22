@@ -4,9 +4,12 @@ import PropTypes from "prop-types";
 import Button from '../../../UI/Button/Button';
 
 class TasksForm extends React.Component {
+    static propTypes = {
+        onAdd: PropTypes.func.isRequired
+    };
+
     constructor(props) {
         super(props);
-
         this.state = {
             title: '',
         };
@@ -21,8 +24,12 @@ class TasksForm extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         let title = this.state.title;
+        let projectId = this.props.currentProjectId;
         if (title) {
-            this.props.onAdd(title);
+            this.props.onAdd({
+                projectId: projectId,
+                taskTitle: title
+            });
             this.setState({title: ''});
         }
     };
@@ -41,8 +48,5 @@ class TasksForm extends React.Component {
 }
 
 
-TasksForm.propTypes = {
-    onAdd: PropTypes.func.isRequired
-};
 
 export default TasksForm;

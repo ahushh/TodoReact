@@ -6,11 +6,23 @@ import Checkbox from '../../../UI/Checkbox/Checkbox';
 import MyButton from '../../../UI/Button/Button';
 
 class Task extends React.Component {
+    static propTypes = {
+        projectId:  PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
+        completed: PropTypes.bool.isRequired,
+        onToggle: PropTypes.func.isRequired,
+        onDelete: PropTypes.func.isRequired,
+        onEdit: PropTypes.func.isRequired,
+
+    };
+
     constructor(props) {
         super(props);
         this.state = {
             editing: false
         };
+
     }
 
     // componentDidUpdate(prevProps, prevState) {
@@ -23,17 +35,22 @@ class Task extends React.Component {
         event.preventDefault();
         // const title = this.refs.title.value;
         const title = event.target[0].value;
-        this.props.onEdit(this.props.id, title);
-
+        if (title !== ""){
+            this.props.onEdit({
+                taskId: this.props.id,
+                projectId: this.props.projectId,
+                taskTitle: title
+            });
+        }
         this.setState({editing: false});
     };
 
     handleDelete = () => {
-        this.props.onDelete(this.props.id);
+        this.props.onDelete({taskId: this.props.id, projectId: this.props.projectId});
     };
 
     handleToggle = () => {
-        this.props.onToggle(this.props.id);
+        this.props.onToggle({taskId: this.props.id, projectId: this.props.projectId});
     };
 
     handleEdit = () => {
@@ -80,15 +97,5 @@ class Task extends React.Component {
 
 
 }
-
-Task.propTypes = {
-    title: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-    completed: PropTypes.bool.isRequired,
-    onToggle: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired,
-    onEdit: PropTypes.func.isRequired,
-
-};
 
 export default Task;

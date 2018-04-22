@@ -8,35 +8,39 @@ export const DELETE_PROJECT = 'DELETE_PROJECT';
 export const TOGGLE_PROJECT = 'TOGGLE_PROJECT';
 export const EDIT_PROJECT = 'EDIT_PROJECT';
 
-let nextId = 5;
+let nextId = 4;
 
-export function addTodo(title) {
+export function addTodo(task) {
     return {
         type: ADD_TODO,
-        id: nextId++,
-        title
+        projectId: task.projectId,
+        taskTitle: task.taskTitle,
+        taskId: ++nextId
     };
 }
 
-export function deleteTodo(id) {
+export function deleteTodo(task) {
     return {
         type: DELETE_TODO,
-        id
+        projectId: task.projectId,
+        taskId: task.taskId
     };
 }
 
-export function toggleTodo(id) {
+export function toggleTodo(task) {
     return {
         type: TOGGLE_TODO,
-        id
+        projectId: task.projectId,
+        taskId: task.taskId
     };
 }
 
-export function editTodo(id, title) {
+export function editTodo(task) {
     return {
         type: EDIT_TODO,
-        id,
-        title
+        projectId: task.projectId,
+        taskId: task.taskId,
+        taskTitle: task.taskTitle
     };
 }
 

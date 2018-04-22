@@ -5,10 +5,10 @@ import {CSSTransition, TransitionGroup} from 'react-transition-group';
 import Task from "../Task/Task";
 
 const TasksList = props => {
-
     return (
         <TransitionGroup component="section" className="todo-list">
-            {props.tasks.map(todo =>
+            { props.tasks ?
+                props.tasks.map(todo =>
                 <CSSTransition key={todo.id}
                                timeout={500}
                                classNames="slide">
@@ -20,9 +20,12 @@ const TasksList = props => {
                         onDelete={props.onDelete}
                         onToggle={props.onToggle}
                         onEdit={props.onEdit}
+                        projectId={props.projectId}
                     />
                 </CSSTransition>
-            )}
+            )
+            : null
+            }
         </TransitionGroup>
 
     );
@@ -30,11 +33,12 @@ const TasksList = props => {
 };
 
 TasksList.propTypes = {
+    projectId: PropTypes.number,
     tasks: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
         completed: PropTypes.bool.isRequired
-    })).isRequired,
+    })),
     onDelete: PropTypes.func.isRequired,
     onToggle: PropTypes.func.isRequired,
     onEdit: PropTypes.func.isRequired

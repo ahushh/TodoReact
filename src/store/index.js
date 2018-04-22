@@ -1,5 +1,5 @@
 import reducer from "../reducers";
-import {createStore} from "redux";
+import {applyMiddleware, createStore, compose} from "redux";
 import state from '../data/state';
 
 const initialStore = {
@@ -24,6 +24,10 @@ const initialStore = {
         }
     ]
 };
-const store = createStore(reducer, state);
+
+
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducer, state, composeEnhancers( applyMiddleware(), ));
 
 export default store;

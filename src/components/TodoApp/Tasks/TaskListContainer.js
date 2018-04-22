@@ -6,20 +6,25 @@ import TasksList from "./TasksList/TasksList";
 function mapStateToProps(state, props) {
     const projectPath = props.projectName;
     const index = state.projects.findIndex((project) => project.title === projectPath);
-
-    debugger;
-    const currentTasks = state.projects[index].tasks;
+    let tasks, projectId;
+    try {
+        tasks = [] && state.projects[index].tasks;
+        projectId = 1 && state.projects[index].id;
+    } catch (e) {
+        console.log(e);
+    }
     return {
-        tasks: currentTasks
+        tasks: tasks,
+        projectId: projectId
     };
 
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        onDelete: id => dispatch(deleteTodo(id)),
-        onToggle: id => dispatch(toggleTodo(id)),
-        onEdit: (id, title) => dispatch(editTodo(id, title))
+        onDelete: projectTask => dispatch(deleteTodo(projectTask)),
+        onToggle: projectTask => dispatch(toggleTodo(projectTask)),
+        onEdit: projectTask => dispatch(editTodo(projectTask))
     };
 }
 
